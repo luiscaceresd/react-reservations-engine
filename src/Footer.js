@@ -1,10 +1,11 @@
 import React from "react";
+import logo from './assets/logo-big.png';
 
 function Footer() {
   return (
     <footer>
       <section>
-        <img src="./public/images/logo-big" alt="Little lemmon's logo"></img>
+        <img src={logo} alt="Little lemmon's logo"></img>
       </section>
       <nav>
         <ul>
