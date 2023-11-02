@@ -11,7 +11,7 @@ function Main() {
             <button>Reserve A Table</button>
           </article>
           <figure>
-            <img src="./assets/" alt="Image of Greek Salad"></img>
+            <img src="./assets/mainImage.jpg" alt="Sushi dish"></img>
           </figure>
       </section>
 
@@ -21,7 +21,7 @@ function Main() {
 
           <article>
               <h3>Greek Salad</h3>
-              <img src="path_to_image.jpg" alt="Image of Greek Salad"></img>
+              <img src="./assets/greekSalad.jpg" alt="Greek Salad"></img>
               <p>The famous greek salad of crispy lettuce, peppers, olives and our classic-style feta cheese, garnished with crunchy garlic and rosemary croutons.</p>
               <span>$12.99</span>
               <button>Order a delivery</button>
@@ -29,7 +29,7 @@ function Main() {
 
           <article>
               <h3>Bruschetta</h3>
-              <img src="path_to_image.jpg" alt="Image of Bruschetta"></img>
+              <img src="./assets/bruchetta.png" alt="Bruschetta"></img>
               <p>Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.</p>
               <span>$5.99</span>
               <button>Order a delivery</button>
@@ -37,7 +37,7 @@ function Main() {
 
           <article>
               <h3>Lemon Dessert</h3>
-              <img src="path_to_image.jpg" alt="Image of Lemon Dessert"></img>
+              <img src="./assets/lemmonDessert.jpg" alt="Lemon Dessert"></img>
               <p>This comes straight from grandma's recipe book, every last ingredient as been sourced and is as authentic as can be imagined.</p>
               <span>$5.00</span>
               <button>Order a delivery</button>
@@ -50,25 +50,25 @@ function Main() {
           <figure>
               <figcaption>Lucas</figcaption>
               <blockquote>The food was delicious!</blockquote>
-              <img src="path_to_lucas_image.jpg" alt="Lucas' Profile Picture"></img>
+              <img src="./assets/persona1.png" alt="Lucas"></img>
           </figure>
 
           <figure>
               <figcaption>Diana</figcaption>
               <blockquote>Fast and yummy!</blockquote>
-              <img src="path_to_diana_image.jpg" alt="Diana's Profile Picture"></img>
+              <img src="./assets/persona2.png" alt="Diana"></img>
           </figure>
 
           <figure>
               <figcaption>Chris</figcaption>
               <blockquote>Couldn't recommend it more.</blockquote>
-              <img src="path_to_chris_image.jpg" alt="Chris' Profile Picture"></img>
+              <img src="./assets/persona3.png" alt="Chris"></img>
           </figure>
 
           <figure>
               <figcaption>Matt</figcaption>
               <blockquote>Really good food.</blockquote>
-              <img src="path_to_matt_image.jpg" alt="Matt's Profile Picture"></img>
+              <img src="./assets/persona4.png" alt="Matt"></img>
           </figure>
       </section>
 
@@ -77,8 +77,8 @@ function Main() {
         <h2>Little Lemon</h2>
         <p>Tucked away in the vibrant pulse of the city, the Little Lemon Restaurant stands as a beacon of gastronomic delight, paying homage to the tangy allure of the lemon. This enchanting eatery, with its sun-kissed yellow decor and whimsical lemon-themed art pieces, immediately transports guests to a Mediterranean orchard where the scent of citrus blossoms fills the air.</p>
         <figure>
-            <img src="path_to_chefs_image.jpg" alt="Chefs at Little Lemon preparing food"></img>
-            <img src="path_to_dish_image.jpg" alt="A delicious dish from Little Lemon"></img>
+            <img src="./assets/finalImage1.jpg" alt="Chefs at Little Lemon preparing food"></img>
+            <img src="./assets/finalImage2.jpg" alt="A delicious dish from Little Lemon"></img>
         </figure>
       </section>
     </main>
