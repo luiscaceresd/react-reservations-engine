@@ -1,5 +1,17 @@
 import React from "react";
 
+// Import images
+import mainImage from './assets/mainImage.jpg';
+import greekSalad from './assets/greekSalad.jpg';
+import bruchetta from './assets/bruchetta.png';
+import lemmonDessert from './assets/lemmonDessert.jpg';
+import persona1 from './assets/persona1.png';
+import persona2 from './assets/persona2.png';
+import persona3 from './assets/persona3.png';
+import persona4 from './assets/persona4.png';
+import finalImage1 from './assets/finalImage1.jpg';
+import finalImage2 from './assets/finalImage2.jpg';
+
 function Main() {
   return (
     <main>
@@ -11,7 +23,7 @@ function Main() {
             <button>Reserve A Table</button>
           </article>
           <figure>
-            <img src="./assets/mainImage.jpg" alt="Sushi dish"></img>
+            <img src={mainImage} alt="Sushi dish" />
           </figure>
       </section>
 
@@ -21,7 +33,7 @@ function Main() {
 
           <article>
               <h3>Greek Salad</h3>
-              <img src="./assets/greekSalad.jpg" alt="Greek Salad"></img>
+              <img src={greekSalad} alt="Greek Salad" />
               <p>The famous greek salad of crispy lettuce, peppers, olives and our classic-style feta cheese, garnished with crunchy garlic and rosemary croutons.</p>
               <span>$12.99</span>
               <button>Order a delivery</button>
@@ -29,7 +41,7 @@ function Main() {
 
           <article>
               <h3>Bruschetta</h3>
-              <img src="./assets/bruchetta.png" alt="Bruschetta"></img>
+              <img src={bruchetta} alt="Bruschetta" />
               <p>Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.</p>
               <span>$5.99</span>
               <button>Order a delivery</button>
@@ -37,7 +49,7 @@ function Main() {
 
           <article>
               <h3>Lemon Dessert</h3>
-              <img src="./assets/lemmonDessert.jpg" alt="Lemon Dessert"></img>
+              <img src={lemmonDessert} alt="Lemon Dessert" />
               <p>This comes straight from grandma's recipe book, every last ingredient as been sourced and is as authentic as can be imagined.</p>
               <span>$5.00</span>
               <button>Order a delivery</button>
@@ -50,25 +62,25 @@ function Main() {
           <figure>
               <figcaption>Lucas</figcaption>
               <blockquote>The food was delicious!</blockquote>
-              <img src="./assets/persona1.png" alt="Lucas"></img>
+              <img src={persona1} alt="Lucas" />
           </figure>
 
           <figure>
               <figcaption>Diana</figcaption>
               <blockquote>Fast and yummy!</blockquote>
-              <img src="./assets/persona2.png" alt="Diana"></img>
+              <img src={persona2} alt="Diana" />
           </figure>
 
           <figure>
               <figcaption>Chris</figcaption>
               <blockquote>Couldn't recommend it more.</blockquote>
-              <img src="./assets/persona3.png" alt="Chris"></img>
+              <img src={persona3} alt="Chris" />
           </figure>
 
           <figure>
               <figcaption>Matt</figcaption>
               <blockquote>Really good food.</blockquote>
-              <img src="./assets/persona4.png" alt="Matt"></img>
+              <img src={persona4} alt="Matt" />
           </figure>
       </section>
 
@@ -77,8 +89,8 @@ function Main() {
         <h2>Little Lemon</h2>
         <p>Tucked away in the vibrant pulse of the city, the Little Lemon Restaurant stands as a beacon of gastronomic delight, paying homage to the tangy allure of the lemon. This enchanting eatery, with its sun-kissed yellow decor and whimsical lemon-themed art pieces, immediately transports guests to a Mediterranean orchard where the scent of citrus blossoms fills the air.</p>
         <figure>
-            <img src="./assets/finalImage1.jpg" alt="Chefs at Little Lemon preparing food"></img>
-            <img src="./assets/finalImage2.jpg" alt="A delicious dish from Little Lemon"></img>
+            <img src={finalImage1} alt="Chefs at Little Lemon preparing food" />
+            <img src={finalImage2} alt="A delicious dish from Little Lemon" />
         </figure>
       </section>
     </main>
