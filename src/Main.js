@@ -18,7 +18,7 @@ function Main() {
       {/* Restaurant description */}
       <section>
           <article>
-            <h1>Little Lemon Miramichi</h1>
+            <h1 className="text-3xl font-bold underline">Little Lemon Miramichi</h1>
             <p>We are a family owned restaurant, focused on traditional recipes served with a modern twist.</p>
             <button>Reserve A Table</button>
           </article>
