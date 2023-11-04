@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+    @apply text-primaryGreen;
+    @apply text-display-lg;
+    @apply font-markazi;
+    @apply font-medium;
+}
+
+h1 + h2 {
+    @apply text-secondaryGray;
+    @apply text-subtitle;
+    @apply font-markazi;
+}
+
+h2 {
+  @apply text-secondaryBlack;
+  @apply text-display-lg;
+  @apply font-markazi;
+  @apply font-medium;
+}
+
+p {
+  @apply text-secondaryBlack;
+  @apply text-lead;
+  @apply font-karla;
+}
+
+nav > ul {
+  @apply text-secondaryBlack;
+  @apply text-lead;
+  @apply font-karla;
+  @apply font-bold;
+}
+
+#reserve-btn {
+
+  @apply text-lead;
+  @apply font-karla;
+  @apply font-bold;
+}
