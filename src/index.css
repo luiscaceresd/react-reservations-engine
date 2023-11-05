@@ -36,7 +36,6 @@ nav > ul {
 }
 
 #reserve-btn {
-
   @apply text-lead;
   @apply font-karla;
   @apply font-bold;
