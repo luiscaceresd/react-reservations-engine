@@ -1,81 +1,78 @@
-import React from 'react';
+import React from "react";
 
 // Import images
 import persona1 from "./assets/persona1.png";
 import persona2 from "./assets/persona2.png";
 import persona3 from "./assets/persona3.png";
-import persona4 from "./assets/persona4.png";
 import stars from "./assets/rating.png";
 
 const posts = [
   {
     id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: '4.5/5.0', href: '#' },
+    title: "Hidden Gem in Canada",
+    href: "#",
+    description: "The food was delicious!",
+    date: "Mar 16, 2020",
+    datetime: "2020-03-16",
+    category: { title: "4.5/5.0", href: "#" },
     author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      name: "Michael Foster",
+      role: "Entrepeneur",
+      href: "#",
+      imageUrl: persona1,
     },
-    
   },
   {
-    id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: '4.5/5.0', href: '#' },
+    id: 2,
+    title: "Mediterranean food at its finest",
+    href: "#",
+    description: "Fast and yummy!",
+    date: "Mar 16, 2020",
+    datetime: "2020-03-16",
+    category: { title: "4.5/5.0", href: "#" },
     author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      name: "Michael Foster",
+      role: "Food Critic",
+      href: "#",
+      imageUrl: persona2,
     },
-    
   },
   {
-    id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: '4.5/5.0', href: '#' },
+    id: 3,
+    title: "Fast and beautiful website",
+    href: "#",
+    description: "Couldn't recommend it more.",
+    date: "Mar 16, 2020",
+    datetime: "2020-03-16",
+    category: { title: "4.5/5.0", href: "#" },
     author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      name: "Michael Foster",
+      role: "Traveler",
+      href: "#",
+      imageUrl: persona3,
     },
-    
   },
   // More posts...
-]
+];
 
 function Testimonials() {
   return (
-    <div className="bg-primaryGreen py-20 sm:py-20">
+    <section className="bg-primaryGreen py-14 sm:py-14 border-y-2 border-primaryGreen">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className='text-white text-center'>Testimonials</h2>
+        <h2 className="text-secondaryGray text-center">Testimonials</h2>
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-white pt-10 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
-            <article key={post.id} className="flex max-w-xl flex-col items-start justify-between bg-white">
+            <article
+              key={post.id}
+              className="group flex max-w-xl flex-col items-start justify-between bg-white hover:shadow-lg hover:shadow-secondaryBlack border rounded-md p-6"
+            >
               <div className="flex self-center my-2 mx-2 gap-x-4 text-xs">
                 <div className="relative flex self-center gap-x-4">
-                  <img src={post.author.imageUrl} alt="" className="h-10 w-10 self-center rounded-full bg-gray-50" />
+                  <img
+                    src={post.author.imageUrl}
+                    alt=""
+                    className="h-10 w-10 self-center rounded-full bg-gray-50"
+                  />
                   <div className="text-sm leading-6">
                     <p className="font-semibold text-sm text-gray-900">
                       <a href={post.author.href}>
@@ -90,7 +87,11 @@ function Testimonials() {
                   href={post.category.href}
                   className="relative z-10 rounded-full self-center bg-secondaryGray px-3 py-1.5 font-medium text-gray-600 hover:bg-secondaryBlack"
                 >
-                  <img src={stars} alt="" className="self-center h-8 rounded-full bg-transparent" />
+                  <img
+                    src={stars}
+                    alt=""
+                    className="self-center h-8 rounded-full bg-transparent"
+                  />
                 </a>
               </div>
 
@@ -101,44 +102,22 @@ function Testimonials() {
                     {post.title}
                   </a>
                 </h3>
-                <p className="line-clamp-3 mt-2 text-sm leading-6 text-gray-600">{post.description}</p>
+                <p className="line-clamp-3 text-sm leading-6 text-gray-600">
+                  {post.description}
+                </p>
               </div>
-              <time dateTime={post.datetime} className="mx-2 mb-2 text-sm text-gray-500">
+              <time
+                dateTime={post.datetime}
+                className="mx-2 mb-2 text-sm text-gray-500"
+              >
                 {post.date}
               </time>
             </article>
           ))}
         </div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }
 
 export default Testimonials;
-
-<section>
-  <h2>Testimonials</h2>
-  <figure>
-    <figcaption>Lucas</figcaption>
-    <blockquote>The food was delicious!</blockquote>
-    <img src={persona1} alt="Lucas" />
-  </figure>
-
-  <figure>
-    <figcaption>Diana</figcaption>
-    <blockquote>Fast and yummy!</blockquote>
-    <img src={persona2} alt="Diana" />
-  </figure>
-
-  <figure>
-    <figcaption>Chris</figcaption>
-    <blockquote>Couldn't recommend it more.</blockquote>
-    <img src={persona3} alt="Chris" />
-  </figure>
-
-  <figure>
-    <figcaption>Matt</figcaption>
-    <blockquote>Really good food.</blockquote>
-    <img src={persona4} alt="Matt" />
-  </figure>
-</section>

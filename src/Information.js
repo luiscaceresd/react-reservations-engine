@@ -7,11 +7,11 @@ import mainImage from "./assets/mainImage.jpg";
 function Information() {
   return (
     <section className="relative isolate px-6 lg:px-8 bg-primaryGreen text-white">
-      <div className="mx-auto max-w-2xl py-6 lg:py-20">
+      <div className="mx-auto max-w-2xl py-6 lg:py-14">
         <h1 className="text-primaryYellow sm:flex sm:justify-center">
           Little Lemon
         </h1>
-        <h2 className="text-secondaryGray mb-6  sm:flex sm:justify-center">
+        <h2 className="text-secondaryGray mb-2 sm:flex sm:justify-center">
           Miramichi
         </h2>
         <div className="sm:mb-8 sm:flex sm:justify-center">

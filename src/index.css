@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply font-karla;
+}
+
 h1 {
     @apply text-primaryGreen;
     @apply text-display-lg;
