@@ -67,7 +67,7 @@ function Description() {
           <img
             src={finalImage1}
             alt="Product screenshot"
-            className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[48rem] md:-ml-4 lg:-ml-0"
+            className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[48rem] md:-ml-4 lg:-ml-0 md:object-scale-down"
             width={2432}
             height={1200}
           />
