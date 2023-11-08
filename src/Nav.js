@@ -1,19 +1,22 @@
-import { Fragment } from 'react'
-import logo from './assets/Logo.png';
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment } from "react";
+import logo from "./assets/Logo.png";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Routes, Route, Link } from "react-router-dom";
+import Main from "./Main";
+import BookingPage from "./BookingPage";
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'About', href: '#', current: false },
-  { name: 'Menu', href: '#', current: false },
-  { name: 'Reservations', href: '#', current: false },
-  { name: 'Order Online', href: '#', current: false },
-  { name: 'Login', href: '#', current: false },
-]
+  { name: "Home", href: "/", current: true },
+  { name: "About", href: "/", current: false },
+  { name: "Menu", href: "/", current: false },
+  { name: "Reservations", href: "/booking", current: false },
+  { name: "Order Online", href: "/", current: false },
+  { name: "Login", href: "/", current: false },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 function Nav() {
@@ -46,17 +49,19 @@ function Nav() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link // Replace <a> with <Link>
                         key={item.name}
-                        href={item.href}
+                        to={item.href} // Replace href with to
                         className={classNames(
-                          item.current ? 'bg-primaryGreen text-white' : 'text-secondaryBlack hover:bg-primaryGreen hover:text-secondaryGray',
-                          'rounded-md px-3 py-2 text-lead font-bold'
+                          item.current
+                            ? "bg-primaryGreen text-white"
+                            : "text-secondaryBlack hover:bg-primaryGreen hover:text-secondaryGray",
+                          "rounded-md px-3 py-2 text-lead font-bold"
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -98,7 +103,10 @@ function Nav() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Your Profile
                           </a>
@@ -108,7 +116,10 @@ function Nav() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Settings
                           </a>
@@ -118,7 +129,10 @@ function Nav() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Sign out
                           </a>
@@ -130,29 +144,34 @@ function Nav() {
               </div>
             </div>
           </div>
-
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
+            <nav className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
+                  as={Link} // Replace "a" with {Link}
+                  to={item.href} // Replace href with to
                   className={classNames(
-                    item.current ? 'bg-primaryGreen text-white' : 'text-secondaryBlack hover:bg-primaryGreen hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-primaryGreen text-white"
+                      : "text-secondaryBlack hover:bg-primaryGreen hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
               ))}
-            </div>
+            </nav>
           </Disclosure.Panel>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/booking" element={<BookingPage />} />
+          </Routes>
         </>
       )}
     </Disclosure>
-  )
+  );
 }
 
 export default Nav;
