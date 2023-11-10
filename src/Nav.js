@@ -163,7 +163,7 @@ function Nav() {
                 </Disclosure.Button>
               ))}
             </nav>
-          </Disclosure.Panel>
+          </Disclosure.Panel> 
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/booking" element={<BookingPage />} />
