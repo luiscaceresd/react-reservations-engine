@@ -5,7 +5,7 @@ import Description from "./Description";
 
 import Testimonials from "./Testimonials";
 
-function Main() {
+function Homepage() {
   return (
     <main>
       {/* Restaurant description */}
@@ -23,4 +23,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Homepage;

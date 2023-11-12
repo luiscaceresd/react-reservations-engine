@@ -3,7 +3,7 @@ import logo from "./assets/Logo.png";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Routes, Route, Link } from "react-router-dom";
-import Main from "./Main";
+import Homepage from "./Homepage";
 import BookingPage from "./BookingPage";
 
 const navigation = [
@@ -164,10 +164,6 @@ function Nav() {
               ))}
             </nav>
           </Disclosure.Panel>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/booking" element={<BookingPage />} />
-          </Routes>
         </>
       )}
     </Disclosure>
