@@ -85,7 +85,7 @@ function Testimonials() {
                 </div>
                 <a
                   href={post.category.href}
-                  className="relative z-10 rounded-full self-center bg-secondaryGray px-3 py-1.5 font-medium text-gray-600 hover:bg-secondaryBlack"
+                  className="relative z-10 rounded-full self-center bg-secondaryGray px-3 py-1.5 font-medium text-gray-600 hover:bg-secondaryBlack transition"
                 >
                   <img
                     src={stars}

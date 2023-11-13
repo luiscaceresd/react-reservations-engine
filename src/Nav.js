@@ -21,15 +21,15 @@ function classNames(...classes) {
 
 function Nav() {
   return (
-    <Disclosure as="nav" className="bg-white z-50">
+    // Apply a global transition to the entire nav
+    <Disclosure as="nav" className="bg-white z-50 transition-all duration-300">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
+              {/* Mobile menu button*/}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-secondaryBlack hover:bg-primaryGreen hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -49,13 +49,13 @@ function Nav() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <Link // Replace <a> with <Link>
+                      <Link
                         key={item.name}
-                        to={item.href} // Replace href with to
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? "bg-primaryGreen text-white"
-                            : "text-secondaryBlack hover:bg-primaryGreen hover:text-secondaryGray",
+                            : "text-secondaryBlack hover:bg-primaryGreen hover:text-white transition",
                           "rounded-md px-3 py-2 text-lead font-bold"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -71,7 +71,6 @@ function Nav() {
                   type="button"
                   className="relative rounded-full bg-white p-1 text-secondaryBlack hover:text-white hover:bg-primaryGreen focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
-                  <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-8 w-8" aria-hidden="true" />
                 </button>
@@ -80,7 +79,6 @@ function Nav() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
@@ -98,7 +96,7 @@ function Nav() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="transition-opacity duration-500 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -149,8 +147,8 @@ function Nav() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as={Link} // Replace "a" with {Link}
-                  to={item.href} // Replace href with to
+                  as={Link}
+                  to={item.href}
                   className={classNames(
                     item.current
                       ? "bg-primaryGreen text-white"
