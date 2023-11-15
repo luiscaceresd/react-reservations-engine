@@ -1,7 +1,7 @@
 import React from "react";
 import Information from "./Information";
 import Products from "./Products";
-import Description from "./Description"; 
+import Description from "./Description";
 
 import Testimonials from "./Testimonials";
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
+import AvailableTimesContext from './AvailableTimesContext';
 
 function BookingForm() {
+  const { availableTimes, setAvailableTimes } = React.useContext(AvailableTimesContext);
+
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
   const [guests, setGuests] = useState('');
@@ -9,10 +12,7 @@ function BookingForm() {
   const [resTime, setResTime] = useState('');
   const [occasion, setOccasion] = useState('');
 
-  //new state for available times
-  const [availableTimes, setAvailableTimes] = useState([
-    "17:00", "18:00", "19:00", "20:00", "21:00"
-  ])
+
 
   // Handlers for changing state
   const handleFNameChange = (e) => { setFName(e.target.value) };
@@ -21,7 +21,6 @@ function BookingForm() {
   const handleResDateChange = (e) => { setResDate(e.target.value) };
   const handleResTimeChange = (e) => { setResTime(e.target.value) };
   const handleOccasionChange = (e) => { setOccasion(e.target.value) };
-  const handleAvailableTimesChange = (e) => { setAvailableTimes(e.target.value) };
 
   return (
     <div className="flex items-center justify-center p-12">
