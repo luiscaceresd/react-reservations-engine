@@ -8,19 +8,19 @@ import BookingPage from './BookingPage';
 import { useReducer } from 'react';
 import AvailableTimesContext from './AvailableTimesContext';
 
-function initializeTimes() {
+export function initializeTimes() {
   // Logic to determine initial available times
   // For now, returns a hardcoded list of times
   return ["17:00", "18:00", "19:00", "20:00", "21:00"];
 }
 
-const updateTimes = (selectedDate) => {
+export const updateTimes = (selectedDate) => {
   // Logic to update available times based on selected date
   // For now, it returns the same times regardless of the date
   return ["17:00", "18:00", "19:00", "20:00", "21:00"];
 };
 
-const timesReducer = (state, action) => {
+export const timesReducer = (state, action) => {
     if(action.type === 'update_times') {
         return updateTimes(action.payload);
     }
