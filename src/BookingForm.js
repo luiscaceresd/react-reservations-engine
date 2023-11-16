@@ -1,26 +1,37 @@
-import React from 'react';
-import { useState } from 'react';
-import AvailableTimesContext from './AvailableTimesContext';
+import React from "react";
+import { useState } from "react";
+import AvailableTimesContext from "./AvailableTimesContext";
 
 function BookingForm() {
-  const { availableTimes, setAvailableTimes } = React.useContext(AvailableTimesContext);
+  const { availableTimes, dispatch } = React.useContext(AvailableTimesContext);
 
-  const [fName, setFName] = useState('');
-  const [lName, setLName] = useState('');
-  const [guests, setGuests] = useState('');
-  const [resDate, setResDate] = useState('');
-  const [resTime, setResTime] = useState('');
-  const [occasion, setOccasion] = useState('');
-
-
+  const [fName, setFName] = useState("");
+  const [lName, setLName] = useState("");
+  const [guests, setGuests] = useState("");
+  const [resDate, setResDate] = useState("");
+  const [resTime, setResTime] = useState("");
+  const [occasion, setOccasion] = useState("");
 
   // Handlers for changing state
-  const handleFNameChange = (e) => { setFName(e.target.value) };
-  const handleLNameChange = (e) => { setLName(e.target.value) };
-  const handleGuestsChange = (e) => { setGuests(e.target.value) };
-  const handleResDateChange = (e) => { setResDate(e.target.value) };
-  const handleResTimeChange = (e) => { setResTime(e.target.value) };
-  const handleOccasionChange = (e) => { setOccasion(e.target.value) };
+  const handleFNameChange = (e) => {
+    setFName(e.target.value);
+  };
+  const handleLNameChange = (e) => {
+    setLName(e.target.value);
+  };
+  const handleGuestsChange = (e) => {
+    setGuests(e.target.value);
+  };
+  const handleResDateChange = (e) => {
+    setResDate(e.target.value);
+    dispatch({ type: "update", payload: e.target.value });
+  };
+  const handleResTimeChange = (e) => {
+    setResTime(e.target.value);
+  };
+  const handleOccasionChange = (e) => {
+    setOccasion(e.target.value);
+  };
 
   return (
     <div className="flex items-center justify-center p-12">
@@ -120,7 +131,9 @@ function BookingForm() {
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 >
                   {availableTimes.map((time) => (
-                    <option key={time} value={time}>{time}</option>
+                    <option key={time} value={time}>
+                      {time}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -134,8 +147,11 @@ function BookingForm() {
               <div className="flex items-center">
                 <input
                   type="radio"
-                  name="radio1"
+                  name="occasion"
                   id="radioButton1"
+                  value="Birthday"
+                  checked={occasion === "Birthday"}
+                  onChange={handleOccasionChange}
                   className="h-5 w-5"
                 />
                 <label
@@ -148,9 +164,10 @@ function BookingForm() {
               <div className="flex items-center">
                 <input
                   type="radio"
-                  name="radio1"
+                  name="occasion"
                   id="radioButton2"
-                  value={occasion}
+                  value="Anniversary"
+                  checked={occasion === "Anniversary"}
                   onChange={handleOccasionChange}
                   className="h-5 w-5"
                 />
