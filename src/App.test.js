@@ -6,7 +6,7 @@ import {initializeTimes, timesReducer, updateTimes } from './Main';
 
   // Mock the context values
   const mockAvailableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00"];
-  const mockDispatch = jest.fn();
+  const mockDispatch = jest.fn(); 
 
   // Create a custom render function that includes the context provider
   const renderWithProvider = (component) => {
