@@ -3,7 +3,7 @@ import { useState } from "react";
 import AvailableTimesContext from "./AvailableTimesContext";
 
 function BookingForm() {
-  const { availableTimes, dispatch } = React.useContext(AvailableTimesContext);
+  const { availableTimes, dispatch, updateTimes } = React.useContext(AvailableTimesContext);
 
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -23,8 +23,10 @@ function BookingForm() {
     setGuests(e.target.value);
   };
   const handleResDateChange = (e) => {
-    setResDate(e.target.value);
-    dispatch({ type: "update", payload: e.target.value });
+    const newDate = e.target.value;
+    setResDate(newDate);
+    updateTimes(newDate, dispatch);
+    console.log('changing')
   };
   const handleResTimeChange = (e) => {
     setResTime(e.target.value);

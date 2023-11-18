@@ -1,36 +1,52 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './App.css';
-import Header from './Header'
+import Header from './Header';
 import Footer from './Footer';
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './Homepage';
 import BookingPage from './BookingPage';
-import { useReducer } from 'react';
 import AvailableTimesContext from './AvailableTimesContext';
+import { fetchAPI } from './mockAPI';
 
-export function initializeTimes() {
-  // Logic to determine initial available times
-  // For now, returns a hardcoded list of times
-  return ["17:00", "18:00", "19:00", "20:00", "21:00"];
-}
-
-export const updateTimes = (selectedDate) => {
-  // Logic to update available times based on selected date
-  // For now, it returns the same times regardless of the date
-  return ["17:00", "18:00", "19:00", "20:00", "21:00"];
+const timesReducer = (state, action) => {
+  if (action.type === 'update_times') {
+    return action.payload;
+  }
+  return state;
 };
 
-export const timesReducer = (state, action) => {
-    if(action.type === 'update_times') {
-        return updateTimes(action.payload);
-    }
-}
+const initializeTimes = (dispatch) => {
+  const today = new Date();
+  fetchAPI(today)
+    .then(availableTimes => {
+      dispatch({ type: 'update_times', payload: availableTimes });
+    })
+    .catch(error => {
+      console.error("Error fetching times:", error);
+      dispatch({ type: 'update_times', payload: [] }); // Dispatching empty array on error
+    });
+};
+
+const updateTimes = (selectedDate, dispatch) => {
+  fetchAPI(selectedDate)
+    .then(availableTimes => {
+      dispatch({ type: 'update_times', payload: availableTimes });
+    })
+    .catch(error => {
+      console.error("Error fetching times for selected date:", error);
+      dispatch({ type: 'update_times', payload: [] }); // Dispatching empty array on error
+    });
+};
 
 function Main() {
-  const [availableTimes, dispatch] = useReducer(timesReducer, initializeTimes());
+  const [availableTimes, dispatch] = useReducer(timesReducer, []);
+
+  useEffect(() => {
+    initializeTimes(dispatch);
+  }, [dispatch]);
 
   return (
-    <AvailableTimesContext.Provider value={{ availableTimes, dispatch }}>
+    <AvailableTimesContext.Provider value={{ availableTimes, dispatch, updateTimes }}>
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
