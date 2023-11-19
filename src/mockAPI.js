@@ -52,19 +52,29 @@ const fetchAPI = (date) => {
 
 // Handle form submission and update available times
 const submitAPI = (formData) => {
-  const dayOfMonth = new Date(formData.date).getUTCDate().toString();
-
-  availableTimesByDay[dayOfMonth] = availableTimesByDay[dayOfMonth].filter(time => time !== formData.time);
-
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (formData) {
-        resolve(true); // Simulate successful submission
+      const dayOfMonth = new Date(formData.resDate).getUTCDate().toString();
+
+      if (availableTimesByDay.hasOwnProperty(dayOfMonth)) {
+        // Ensure we're working with an array before calling filter
+        if (Array.isArray(availableTimesByDay[dayOfMonth])) {
+          // Use resTime from formData to filter the time slot out
+          availableTimesByDay[dayOfMonth] = availableTimesByDay[dayOfMonth].filter(time => time !== formData.resTime);
+          resolve(true); // Simulate successful submission
+        } else {
+          // If for some reason availableTimesByDay[dayOfMonth] is not an array, resolve or reject based on your requirement
+          console.error(`Expected an array of times, but received: ${typeof availableTimesByDay[dayOfMonth]}`);
+          resolve(true); // or reject, depending on whether you want to simulate a failure or not
+        }
       } else {
-        reject(new Error('Form submission failed.'));
+        // If the day does not exist in your data structure, resolve or reject
+        console.error(`No available times for the selected date: ${formData.resDate}`);
+        resolve(true); // or reject, based on your requirement
       }
     }, 1000); // Simulate API delay
   });
 };
+
 
 export { fetchAPI, submitAPI };

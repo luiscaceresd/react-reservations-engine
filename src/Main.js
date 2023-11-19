@@ -1,12 +1,14 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Homepage from './Homepage';
 import BookingPage from './BookingPage';
+import ConfirmedBooking from './ConfirmedBooking';
 import AvailableTimesContext from './AvailableTimesContext';
-import { fetchAPI } from './mockAPI';
+import BookingContext from './BookingContext';
+import { fetchAPI, submitAPI } from './mockAPI';
 
 const timesReducer = (state, action) => {
   if (action.type === 'update_times') {
@@ -40,21 +42,44 @@ const updateTimes = (selectedDate, dispatch) => {
 
 function Main() {
   const [availableTimes, dispatch] = useReducer(timesReducer, []);
+  const [bookingDetails, setBookingDetails] = useState({
+    fName: '',
+    lName: '',
+    guests: '',
+    date: '',
+    time: '',
+    occasion: '',
+  });
+  const navigate = useNavigate();
 
   useEffect(() => {
     initializeTimes(dispatch);
   }, [dispatch]);
 
+  const submitForm = async (formData) => {
+    try {
+      const result = await submitAPI(formData);
+      if (result) {
+        navigate('/confirmation');
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  }
+
   return (
-    <AvailableTimesContext.Provider value={{ availableTimes, dispatch, updateTimes }}>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/booking" element={<BookingPage />} />
-        {/* Add other routes as needed */}
-      </Routes>
-      <Footer />
-    </AvailableTimesContext.Provider>
+    <BookingContext.Provider value={{ bookingDetails, setBookingDetails }}>
+      <AvailableTimesContext.Provider value={{ availableTimes, dispatch, updateTimes, submitForm }}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/confirmation" element={<ConfirmedBooking />} />
+          {/* Add other routes as needed */}
+        </Routes>
+        <Footer />
+      </AvailableTimesContext.Provider>
+    </BookingContext.Provider>
   );
 }
 

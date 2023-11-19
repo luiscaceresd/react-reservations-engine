@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import AvailableTimesContext from "./AvailableTimesContext";
+import BookingContext from "./BookingContext";
 
 function BookingForm() {
-  const { availableTimes, dispatch, updateTimes } = React.useContext(AvailableTimesContext);
+  const { availableTimes, dispatch, updateTimes, submitForm } = React.useContext(AvailableTimesContext);
+  const { setBookingDetails, bookingDetails } = React.useContext(BookingContext);
 
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -11,6 +13,8 @@ function BookingForm() {
   const [resDate, setResDate] = useState("");
   const [resTime, setResTime] = useState("");
   const [occasion, setOccasion] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
+  const [submissionError, setSubmissionError] = useState(""); // Track any submission errors
 
   // Handlers for changing state
   const handleFNameChange = (e) => {
@@ -34,11 +38,43 @@ function BookingForm() {
   const handleOccasionChange = (e) => {
     setOccasion(e.target.value);
   };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true); // Indicate that submission is in progress
+    setSubmissionError(""); // Reset any existing errors
+
+    const formData = {
+      fName,
+      lName,
+      guests,
+      resDate,
+      resTime,
+      occasion,
+    };
+
+    setBookingDetails({
+      fName: formData.fName,
+      lName: formData.lName,
+      guests: formData.guests,
+      date: formData.resDate, // Make sure property names match the state names
+      time: formData.resTime,
+      occasion: formData.occasion,
+    })
+
+    try {
+      await submitForm(formData);
+    } catch (error) {
+      setSubmissionError("Failed to submit the form. Please try again."); // Provide feedback on error
+    } finally {
+      setIsSubmitting(false); // Reset submission state whether it was successful or not
+    }
+  };
+
 
   return (
     <div className="flex items-center justify-center p-12">
       <div className="mx-auto w-full max-w-[550px]">
-        <form action="https://formbold.com/s/FORM_ID" method="POST">
+        <form onSubmit={handleFormSubmit}>
           <div className="-mx-3 flex flex-wrap">
             <div className="w-full px-3 sm:w-1/2">
               <div className="mb-5">
@@ -184,10 +220,15 @@ function BookingForm() {
           </div>
           <div>
             <button
-              type="submit"
-              className="hover:shadow-form rounded-md hover:bg-primaryGreen hover:text-white transition bg-primaryYellow py-3 px-8 text-center text-base font-semibold text-black outline-none"
+               type="submit"
+               disabled={isSubmitting} // Disable button while submitting
+               className={`hover:shadow-form rounded-md transition py-3 px-8 text-center text-base font-semibold outline-none ${
+                 isSubmitting
+                   ? "bg-gray-300 text-gray-500 cursor-not-allowed" // Styles for disabled state
+                   : "hover:bg-primaryGreen hover:text-white bg-primaryYellow text-black"
+               }`}
             >
-              Make Your Reservation
+              {isSubmitting ? "Submitting..." : "Make Your Reservation"}
             </button>
           </div>
         </form>
