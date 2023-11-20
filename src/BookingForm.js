@@ -56,7 +56,7 @@ function BookingForm() {
       fName: formData.fName,
       lName: formData.lName,
       guests: formData.guests,
-      date: formData.resDate, // Make sure property names match the state names
+      date: formData.resDate, 
       time: formData.resTime,
       occasion: formData.occasion,
     })
