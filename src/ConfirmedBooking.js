@@ -4,6 +4,16 @@ import BookingContext from './BookingContext'; // Import the context
 const ConfirmationPage = () => {
   const { bookingDetails } = useContext(BookingContext); // Use context to get booking details
 
+  // A mapping from variable names to user-friendly labels
+  const labels = {
+    fName: 'First Name',
+    lName: 'Last Name',
+    guests: 'Guests',
+    resDate: 'Reservation Date',
+    resTime: 'Reservation Time',
+    occasion: 'Occasion',
+  };
+
   return (
     <div className="flex items-center justify-center p-12">
       <div className="mx-auto w-full max-w-[550px]">
@@ -21,7 +31,7 @@ const ConfirmationPage = () => {
               {Object.entries(bookingDetails).map(([key, value]) => (
                 <div key={key} className={`${key % 2 === 0 ? 'bg-gray-50' : 'bg-white'} px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6`}>
                   <dt className="text-sm font-medium text-gray-500">
-                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                    {labels[key]} {/* Use the labels mapping here */}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     {value}

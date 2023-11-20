@@ -1,11 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import AvailableTimesContext from "./AvailableTimesContext";
 import BookingContext from "./BookingContext";
 
 function BookingForm() {
-  const { availableTimes, dispatch, updateTimes, submitForm } = React.useContext(AvailableTimesContext);
-  const { setBookingDetails, bookingDetails } = React.useContext(BookingContext);
+  const { availableTimes, dispatch, updateTimes, submitForm } = useContext(AvailableTimesContext);
+  const { setBookingDetails } = useContext(BookingContext);
 
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -13,35 +12,35 @@ function BookingForm() {
   const [resDate, setResDate] = useState("");
   const [resTime, setResTime] = useState("");
   const [occasion, setOccasion] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
-  const [submissionError, setSubmissionError] = useState(""); // Track any submission errors
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
+
+  // Custom form validation logic
+  const isFormValid = () => {
+    return (
+      fName.trim() !== "" &&
+      lName.trim() !== "" &&
+      guests.trim() !== "" &&
+      resDate.trim() !== "" &&
+      occasion.trim() !== ""
+    );
+  };
 
   // Handlers for changing state
-  const handleFNameChange = (e) => {
-    setFName(e.target.value);
-  };
-  const handleLNameChange = (e) => {
-    setLName(e.target.value);
-  };
-  const handleGuestsChange = (e) => {
-    setGuests(e.target.value);
-  };
+  const handleFNameChange = (e) => setFName(e.target.value);
+  const handleLNameChange = (e) => setLName(e.target.value);
+  const handleGuestsChange = (e) => setGuests(e.target.value);
   const handleResDateChange = (e) => {
-    const newDate = e.target.value;
-    setResDate(newDate);
-    updateTimes(newDate, dispatch);
-    console.log('changing')
+    setResDate(e.target.value);
+    updateTimes(e.target.value, dispatch);
   };
-  const handleResTimeChange = (e) => {
-    setResTime(e.target.value);
-  };
-  const handleOccasionChange = (e) => {
-    setOccasion(e.target.value);
-  };
+  const handleResTimeChange = (e) => setResTime(e.target.value);
+  const handleOccasionChange = (e) => setOccasion(e.target.value);
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true); // Indicate that submission is in progress
-    setSubmissionError(""); // Reset any existing errors
+    setIsSubmitting(true);
+    setSubmissionError("");
 
     const formData = {
       fName,
@@ -52,21 +51,14 @@ function BookingForm() {
       occasion,
     };
 
-    setBookingDetails({
-      fName: formData.fName,
-      lName: formData.lName,
-      guests: formData.guests,
-      date: formData.resDate, 
-      time: formData.resTime,
-      occasion: formData.occasion,
-    })
+    setBookingDetails(formData);
 
     try {
       await submitForm(formData);
     } catch (error) {
-      setSubmissionError("Failed to submit the form. Please try again."); // Provide feedback on error
+      setSubmissionError("Failed to submit the form. Please try again.");
     } finally {
-      setIsSubmitting(false); // Reset submission state whether it was successful or not
+      setIsSubmitting(false);
     }
   };
 
@@ -91,6 +83,7 @@ function BookingForm() {
                   placeholder="First Name"
                   value={fName}
                   onChange={handleFNameChange}
+                  required
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
               </div>
@@ -110,6 +103,7 @@ function BookingForm() {
                   placeholder="Last Name"
                   value={lName}
                   onChange={handleLNameChange}
+                  required
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
               </div>
@@ -131,6 +125,7 @@ function BookingForm() {
               max="10"
               value={guests}
               onChange={handleGuestsChange}
+              required
               className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
@@ -149,6 +144,7 @@ function BookingForm() {
                   id="res-date"
                   value={resDate}
                   onChange={handleResDateChange}
+                  required
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
               </div>
@@ -166,6 +162,7 @@ function BookingForm() {
                   id="res-time"
                   value={resTime}
                   onChange={handleResTimeChange}
+                  required
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 >
                   {availableTimes.map((time) => (
@@ -221,15 +218,16 @@ function BookingForm() {
           <div>
             <button
                type="submit"
-               disabled={isSubmitting} // Disable button while submitting
+               disabled={!isFormValid() || isSubmitting}
                className={`hover:shadow-form rounded-md transition py-3 px-8 text-center text-base font-semibold outline-none ${
-                 isSubmitting
-                   ? "bg-gray-300 text-gray-500 cursor-not-allowed" // Styles for disabled state
+                 !isFormValid() || isSubmitting
+                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                    : "hover:bg-primaryGreen hover:text-white bg-primaryYellow text-black"
                }`}
             >
               {isSubmitting ? "Submitting..." : "Make Your Reservation"}
             </button>
+            {submissionError && <div className="text-red-500">{submissionError}</div>}
           </div>
         </form>
       </div>
