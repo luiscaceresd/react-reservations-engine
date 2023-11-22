@@ -17,7 +17,7 @@ const timesReducer = (state, action) => {
   return state;
 };
 
-const initializeTimes = (dispatch) => {
+export const initializeTimes = (dispatch) => {
   const today = new Date();
   fetchAPI(today)
     .then(availableTimes => {
