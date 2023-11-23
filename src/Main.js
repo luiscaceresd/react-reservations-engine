@@ -29,14 +29,16 @@ export const initializeTimes = (dispatch) => {
     });
 };
 
-const updateTimes = (selectedDate, dispatch) => {
+const updateTimes = (selectedDate, dispatch, callback) => {
   fetchAPI(selectedDate)
     .then(availableTimes => {
       dispatch({ type: 'update_times', payload: availableTimes });
+      callback(availableTimes); // Call the callback with the times
     })
     .catch(error => {
       console.error("Error fetching times for selected date:", error);
       dispatch({ type: 'update_times', payload: [] }); // Dispatching empty array on error
+      callback([]); // Call the callback with an empty array
     });
 };
 

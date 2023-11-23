@@ -2,9 +2,7 @@ import { Fragment } from "react";
 import logo from "./assets/Logo.png";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Routes, Route, Link } from "react-router-dom";
-import Homepage from "./Homepage";
-import BookingPage from "./BookingPage";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -21,15 +19,13 @@ function classNames(...classes) {
 
 function Nav() {
   return (
-    // Apply a global transition to the entire nav
-    <Disclosure as="nav" className="bg-white z-50 transition-all duration-300">
+    <Disclosure as="nav" className="bg-white z-50 transition-all duration-300" aria-label="Main navigation">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
-              {/* Mobile menu button*/}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-secondaryBlack hover:bg-primaryGreen hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-secondaryBlack hover:bg-primaryGreen hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-label={open ? "Close main menu" : "Open main menu"}>
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -70,20 +66,18 @@ function Nav() {
                 <button
                   type="button"
                   className="relative rounded-full bg-white p-1 text-secondaryBlack hover:text-white hover:bg-primaryGreen focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  aria-label="View notifications"
                 >
-                  <span className="sr-only">View notifications</span>
                   <BellIcon className="h-8 w-8" aria-hidden="true" />
                 </button>
-
-                {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-label="Open user menu">
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
+                        alt="User profile"
                       />
                     </Menu.Button>
                   </div>
@@ -143,7 +137,7 @@ function Nav() {
             </div>
           </div>
           <Disclosure.Panel className="sm:hidden">
-            <nav className="space-y-1 px-2 pb-3 pt-2">
+            <nav className="space-y-1 px-2 pb-3 pt-2" aria-label="Mobile navigation">
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}

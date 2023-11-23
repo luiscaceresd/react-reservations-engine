@@ -46,7 +46,7 @@ const fetchAPI = (date) => {
       } else {
         reject(new Error('No available times for the selected date.'));
       }
-    }, 1000);
+    }, 400);
   });
 };
 
