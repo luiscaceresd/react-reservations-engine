@@ -1,26 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Information from "./Information";
 import Products from "./Products";
 import Description from "./Description";
-
 import Testimonials from "./Testimonials";
 
-function Homepage() {
-  return (
-    <main>
-      {/* Restaurant description */}
-      <Information/>
+function Homepage({ scrollTo }) {
+    useEffect(() => {
+      // If scrollTo has a value, try to find an element with that ID and scroll to it
+      if (scrollTo) {
+        const element = document.getElementById(scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, [scrollTo]);
 
-      {/* Week's specials */}
-      <Products/>
+    return (
+        <main>
+            {/* Restaurant description */}
+            <div id="order-online">
+            <Information />
+            </div>
 
-      {/* Testimonials */}
-      <Testimonials/>
+            {/* Week's specials */}
+            <div id="menu">
+              <Products />
+            </div>
+            {/* Testimonials */}
+            <div id="login">
+              <Testimonials />
+            </div>
 
-      {/* Final section */}
-      <Description/>
-    </main>
-  );
+            {/* Final section */}
+            <div id="description"> {/* Add id here for the scrolling target */}
+                <Description />
+            </div>
+        </main>
+    );
 }
 
 export default Homepage;

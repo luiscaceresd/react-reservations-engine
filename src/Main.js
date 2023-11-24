@@ -77,6 +77,10 @@ function Main() {
           <Route path="/" element={<Homepage />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/confirmation" element={<ConfirmedBooking />} />
+          <Route path="/about" element={<Homepage scrollTo="description" />} />
+          <Route path="/menu" element={<Homepage scrollTo="menu" />} />
+          <Route path="/order-online" element={<Homepage scrollTo="order-online" />} />
+          <Route path="/login" element={<Homepage scrollTo="login" />} />
           {/* Add other routes as needed */}
         </Routes>
         <Footer />
