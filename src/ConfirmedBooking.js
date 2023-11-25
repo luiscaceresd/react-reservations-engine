@@ -34,7 +34,7 @@ const ConfirmationPage = () => {
                     {labels[key]} {/* Use the labels mapping here */}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {value}
+                    {value} 
                   </dd>
                 </div>
               ))}
