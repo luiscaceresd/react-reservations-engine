@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import mainImage from "./assets/mainImage.jpg";
 

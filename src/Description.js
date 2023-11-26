@@ -2,7 +2,6 @@ import React from "react";
 
 // Import images
 import finalImage1 from "./assets/finalImage1.jpg";
-import finalImage2 from "./assets/finalImage2.jpg";
 import reservationIcon from "./assets/calendar.png";
 import cartIcon from "./assets/shopping-cart.png";
 import deliveryIcon from "./assets/free-delivery.png";
