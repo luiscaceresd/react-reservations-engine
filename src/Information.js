@@ -28,7 +28,7 @@ function Information() {
           </p>
           <div className="mt-6 flex items-center justify-center gap-x-6">
             <a
-              href="#"
+              href="/booking"
               id="reserve-btn"
               className="hover:bg-white bg-primaryYellow text-primaryGreen self-align py-2 px-4 rounded shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
